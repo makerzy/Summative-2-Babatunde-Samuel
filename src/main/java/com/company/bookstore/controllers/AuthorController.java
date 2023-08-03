@@ -40,12 +40,12 @@ public class AuthorController {
 
     @PutMapping(value = "/authors/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void updateCoffee(@RequestBody Author author, @PathVariable int id) {
+    public void updateAuthor(@RequestBody Author author, @PathVariable int id) {
         authorRepository.save(author);
     }
 
     @DeleteMapping(value = "/authors/{id}")
-    public void deleteCoffee(@PathVariable int id) {
+    public void deleteAuthor(@PathVariable int id) {
         authorRepository.deleteById(id);
     }
 
