@@ -1,0 +1,45 @@
+# The requirements doesn't detail which fields are nullable,
+#so, I made all field nullable except the ID
+
+type Author{
+    id: String!
+    firstName: String
+    lastName: String
+    email:String
+    phone:String
+    street: String
+    city:String
+    state:String
+    books: [Book!]
+}
+
+type Book{
+    id: String!
+
+}
+
+type Publisher{
+    id: String!
+
+}
+
+type Query{
+    authors:[Author!]!
+    books: [Book!]!
+    publishers: [Publisher!]!
+    findBookById(id: String!):Book
+    findAuthorById(id: String!): Author
+    findPublisherById(id: String!): Publisher
+}
+
+type Mutation{
+    addAuthor(
+        firstName:String!,
+        lastName: String!,
+        email: String!,
+        phone:String,
+        street: String,
+        city:String,
+        state:String
+    ): Author
+}
