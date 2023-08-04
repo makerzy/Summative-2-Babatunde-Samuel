@@ -40,14 +40,3 @@ type Query{
     findPublisherById(id: String!): Publisher
 }
 
-type Mutation{
-    addAuthor(
-        firstName:String!,
-        lastName: String!,
-        email: String!,
-        phone:String,
-        street: String,
-        city:String,
-        state:String
-    ): Author
-}

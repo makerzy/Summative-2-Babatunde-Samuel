@@ -85,6 +85,7 @@ public class PublisherRepositoryTests {
         //Arrange...
         publisherRepository.save(publisher);
         publisher.setCity("Palm Springs");
+        publisherRepository.save(publisher);
 
         //Act...
         Optional<Publisher> publisher1 = publisherRepository.findById(publisher.getId());

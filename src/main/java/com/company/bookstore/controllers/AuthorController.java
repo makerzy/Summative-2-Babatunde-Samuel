@@ -11,7 +11,6 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(value = "/authors")
 public class AuthorController {
 
     @Autowired
