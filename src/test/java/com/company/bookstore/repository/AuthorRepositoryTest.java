@@ -21,7 +21,7 @@ public class AuthorRepositoryTest {
     Author author;
 
     @BeforeEach
-    public void setUp(){
+    public void setUp() {
         authorRepository.deleteAll();
         author = new Author();
         author.setFirstName("first_name");
@@ -36,9 +36,9 @@ public class AuthorRepositoryTest {
     }
 
     @Test
-    public void shouldSaveNewAuthor(){
+    public void shouldSaveNewAuthor() {
         Author author1 = author;
-        author1.setAuthorId(author.getAuthorId()+1);
+        author1.setAuthorId(author.getAuthorId() + 1);
         authorRepository.save(author1);
         Optional<Author> author2 = authorRepository.findById(author1.getAuthorId());
         assertEquals(author2.get(), author1);
@@ -52,14 +52,14 @@ public class AuthorRepositoryTest {
     }
 
     @Test
-    public void shouldGetAllAuthors(){
+    public void shouldGetAllAuthors() {
         authorRepository.save(author);
         List<Author> authors = authorRepository.findAll();
         assertEquals(authors.size(), 1);
     }
 
     @Test
-    public  void  shouldUpdateAuthor(){
+    public void shouldUpdateAuthor() {
         authorRepository.save(author);
         author.setState("California");
         authorRepository.save(author);
@@ -69,7 +69,7 @@ public class AuthorRepositoryTest {
     }
 
     @Test
-    public void shouldDeleteAuthorById(){
+    public void shouldDeleteAuthorById() {
         authorRepository.save(author);
         authorRepository.deleteById(author.getAuthorId());
         Optional<Author> author1 = authorRepository.findById(author.getAuthorId());

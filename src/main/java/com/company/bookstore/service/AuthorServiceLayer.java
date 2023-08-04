@@ -5,11 +5,9 @@ import com.company.bookstore.models.Author;
 import com.company.bookstore.models.Book;
 import com.company.bookstore.repository.AuthorRepository;
 import com.company.bookstore.repository.BookRepository;
-import com.company.bookstore.repository.PublisherRepository;
 import com.company.bookstore.viewmodel.AuthorViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,15 +20,12 @@ public class AuthorServiceLayer {
 
 
     @Autowired
-    public AuthorServiceLayer(
-            AuthorRepository authorRepository,
-BookRepository bookRepository
-    ){
+    public AuthorServiceLayer(AuthorRepository authorRepository, BookRepository bookRepository) {
         this.authorRepository = authorRepository;
         this.bookRepository = bookRepository;
     }
 
-    private AuthorViewModel buildAuthorViewModel(Author author){
+    private AuthorViewModel buildAuthorViewModel(Author author) {
         AuthorViewModel authorViewModel = new AuthorViewModel();
         List<Book> books = this.bookRepository.findByAuthorId(author.getAuthorId());
         authorViewModel.setAuthorId(author.getAuthorId());
@@ -47,12 +42,11 @@ BookRepository bookRepository
     }
 
 
-
-    public List<AuthorViewModel> getAuthors(){
+    public List<AuthorViewModel> getAuthors() {
         List<Author> authors = authorRepository.findAll();
         List<AuthorViewModel> authorViewModels = new ArrayList<>();
 
-        for (Author author:authors             ) {
+        for (Author author : authors) {
             AuthorViewModel authorViewModel = buildAuthorViewModel(author);
             authorViewModels.add(authorViewModel);
         }
@@ -60,10 +54,10 @@ BookRepository bookRepository
         return authorViewModels;
     }
 
-    public AuthorViewModel getAuthorById(int authorId){
+    public AuthorViewModel getAuthorById(int authorId) {
         Optional<Author> author = authorRepository.findById(authorId);
         AuthorViewModel authorViewModel = new AuthorViewModel();
-        if(author.isPresent()) {
+        if (author.isPresent()) {
             authorViewModel = buildAuthorViewModel(author.get());
         }
         return authorViewModel;
