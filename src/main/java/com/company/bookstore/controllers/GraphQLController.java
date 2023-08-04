@@ -15,12 +15,12 @@ public class GraphQLController {
     AuthorServiceLayer authorServiceLayer;
 
     @QueryMapping
-    public AuthorViewModel getAuthorById(@Argument String id){
+    public AuthorViewModel findAuthorById(@Argument String id){
         return authorServiceLayer.getAuthorById(Integer.parseInt(id));
     }
 
     @QueryMapping
-    public List<AuthorViewModel> getAuthors(){
+    public List<AuthorViewModel> authors(){
         return authorServiceLayer.getAuthors();
     }
 }

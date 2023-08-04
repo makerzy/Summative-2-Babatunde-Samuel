@@ -8,13 +8,13 @@ import com.company.bookstore.viewmodel.AuthorViewModel;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.mock;
 
 public class AuthorServiceTest {
 
@@ -91,14 +91,14 @@ public class AuthorServiceTest {
     }
 
     @Test
-    public void shouldGetAuthors(){
+    public void shouldGetAuthors() {
         List<AuthorViewModel> authors = authorServiceLayer.getAuthors();
         System.out.println(authors.toString());
-        assertEquals (authors.size(), 2);
+        assertEquals(authors.size(), 2);
     }
 
     @Test
-    public void shouldGetAuthorById(){
+    public void shouldGetAuthorById() {
         Book book = new Book();
         book.setBookId(1);
         book.setAuthorId(1);
