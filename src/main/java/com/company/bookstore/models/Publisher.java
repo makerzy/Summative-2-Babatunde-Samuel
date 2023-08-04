@@ -18,9 +18,9 @@ public class Publisher implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-    @JoinColumn(name = "publisherId")
-    private Set<Book> books = new HashSet<>();
+//    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+//    @JoinColumn(name = "publisherId")
+//    private Set<Book> books = new HashSet<>();
     private String name;
     private String street;
     private String city;

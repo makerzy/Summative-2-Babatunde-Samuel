@@ -1,16 +1,13 @@
-package com.company.bookstore.models;
+package com.company.bookstore.viewmodel;
 
+import com.company.bookstore.models.Book;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
-public class Author {
+public class AuthorViewModel {
 
-    @Id
-    @Column(name = "author_id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int authorId;
     private String firstName;
     private String lastName;
@@ -20,6 +17,7 @@ public class Author {
     private String city;
     private String state;
     private String postalCode;
+    List<Book> books = new ArrayList<>();
 
     public int getAuthorId() {
         return authorId;
@@ -88,13 +86,36 @@ public class Author {
     public String getPostalCode() {
         return postalCode;
     }
+
     public void setPostalCode(String postalCode) {
         this.postalCode = postalCode;
     }
 
+    public List<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(List<Book> books) {
+        this.books = books;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AuthorViewModel that = (AuthorViewModel) o;
+        return authorId == that.authorId && Objects.equals(firstName, that.firstName) && Objects.equals(lastName, that.lastName) && Objects.equals(email, that.email) && Objects.equals(phone, that.phone) && Objects.equals(street, that.street) && Objects.equals(city, that.city) && Objects.equals(state, that.state) && Objects.equals(postalCode, that.postalCode) && Objects.equals(books, that.books);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(authorId, firstName, lastName, email, phone, street, city, state, postalCode, books);
+    }
+
+
     @Override
     public String toString() {
-        return "Author{" +
+        return "AuthorViewModel{" +
                 "authorId=" + authorId +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
@@ -104,25 +125,7 @@ public class Author {
                 ", city='" + city + '\'' +
                 ", state='" + state + '\'' +
                 ", postalCode='" + postalCode + '\'' +
+                ", books=" + books +
                 '}';
     }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Author author = (Author) o;
-        return authorId == author.authorId && Objects.equals(firstName, author.firstName) && Objects.equals(lastName, author.lastName) && Objects.equals(email, author.email) && Objects.equals(phone, author.phone) && Objects.equals(street, author.street) && Objects.equals(city, author.city) && Objects.equals(state, author.state) && Objects.equals(postalCode, author.postalCode);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(authorId, firstName, lastName, email, phone, street, city, state, postalCode);
-    }
 }
-
-
-//    INSERT INTO author
-//        (`author_id`, `first_name`, `last_name`, `street`, `city`, `state`, `postal_code`, `phone`, `email`)
-//    VALUES
-//            (1, "Stephen", "King", "Hollywood", "Los Angeles", "CA", "11100", "111-222-3333", "sking@gmail.com");
