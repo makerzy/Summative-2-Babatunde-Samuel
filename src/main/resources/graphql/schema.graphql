@@ -20,6 +20,14 @@ type Book{
 
 type Publisher{
     id: String!
+    firstName: String
+    lastName: String
+    email:String
+    phone:String
+    street: String
+    city:String
+    state:String
+    books: [Book!]
 
 }
 
