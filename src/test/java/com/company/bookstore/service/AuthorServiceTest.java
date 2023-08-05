@@ -82,7 +82,6 @@ public class AuthorServiceTest {
         bookList.add(book);
         bookList2.add(book2);
 
-
         doReturn(book).when(bookRepository).save(book);
         doReturn(book2).when(bookRepository).save(book2);
         doReturn(bookList).when(bookRepository).findByAuthorId(1);

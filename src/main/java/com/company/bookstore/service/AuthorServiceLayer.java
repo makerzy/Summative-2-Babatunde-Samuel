@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Component
-public class AuthorServiceLayer {
+public class AuthorServiceLayer  {
     private AuthorRepository authorRepository;
     private BookRepository bookRepository;
 
@@ -28,6 +28,10 @@ public class AuthorServiceLayer {
     private AuthorViewModel buildAuthorViewModel(Author author) {
         AuthorViewModel authorViewModel = new AuthorViewModel();
         List<Book> books = this.bookRepository.findByAuthorId(author.getAuthorId());
+        System.out.println("Author: "+author.getAuthorId());
+        System.out.println("Size: "+books.size());
+        System.out.println("Books: ");
+        books.forEach(book -> System.out.println(book.getTitle()));
         authorViewModel.setId(author.getAuthorId());
         authorViewModel.setFirstName(author.getFirstName());
         authorViewModel.setLastName(author.getLastName());
@@ -41,13 +45,13 @@ public class AuthorServiceLayer {
         return authorViewModel;
     }
 
-
     public List<AuthorViewModel> getAuthors() {
         List<Author> authors = authorRepository.findAll();
         List<AuthorViewModel> authorViewModels = new ArrayList<>();
 
         for (Author author : authors) {
             AuthorViewModel authorViewModel = buildAuthorViewModel(author);
+            System.out.println("Books: "+authorViewModel.getBooks().size());
             authorViewModels.add(authorViewModel);
         }
 

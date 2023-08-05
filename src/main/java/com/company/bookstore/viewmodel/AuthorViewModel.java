@@ -97,6 +97,7 @@ public class AuthorViewModel {
 
     public void setBooks(List<Book> books) {
         this.books = books;
+        System.out.println("Book size View: " + this.books.size());
     }
 
     @Override
@@ -112,11 +113,10 @@ public class AuthorViewModel {
         return Objects.hash(id, firstName, lastName, email, phone, street, city, state, postalCode, books);
     }
 
-
     @Override
     public String toString() {
         return "AuthorViewModel{" +
-                "authorId=" + id +
+                "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
