@@ -40,10 +40,13 @@ public class AuthorController {
     @PutMapping(value = "/authors/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void updateAuthor(@RequestBody Author author, @PathVariable int id) {
-        authorRepository.save(author);
+        Optional<Author> author1 = authorRepository.findById(id);
+        if (author1.isPresent()) // only update if there is an existing row with the author Id
+            authorRepository.save(author);
     }
 
     @DeleteMapping(value = "/authors/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteAuthor(@PathVariable int id) {
         authorRepository.deleteById(id);
     }

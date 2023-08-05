@@ -23,6 +23,7 @@ public class PublisherController {
 
     //read by id - GET by id
     @GetMapping("/publishers/{id}")
+    @ResponseStatus(HttpStatus.OK)
     public Publisher getPublisherById(@PathVariable Integer id){
         Optional<Publisher> returnVal = repo.findById(id);
         if(returnVal.isPresent()){
@@ -34,6 +35,7 @@ public class PublisherController {
 
     //read all - GET all
     @GetMapping("/publishers")
+    @ResponseStatus(HttpStatus.OK)
     public List<Publisher> getPublishers(){return repo.findAll();}
 
     //update - PUT
