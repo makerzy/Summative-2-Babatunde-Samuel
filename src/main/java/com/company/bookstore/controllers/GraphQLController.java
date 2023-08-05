@@ -2,10 +2,11 @@ package com.company.bookstore.controllers;
 
 import com.company.bookstore.models.Author;
 import com.company.bookstore.models.Book;
+import com.company.bookstore.models.Publisher;
 import com.company.bookstore.repository.AuthorRepository;
 import com.company.bookstore.repository.BookRepository;
+import com.company.bookstore.repository.PublisherRepository;
 import com.company.bookstore.service.AuthorServiceLayer;
-import com.company.bookstore.viewmodel.AuthorViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
@@ -24,12 +25,17 @@ public class GraphQLController {
     BookRepository bookRepository;
     @Autowired
     AuthorRepository authorRepository;
-
+    @Autowired
+    PublisherRepository publisherRepository;
     @QueryMapping
     public Author findAuthorById(@Argument String id){
         Optional<Author> author = authorRepository.findById(Integer.parseInt(id));
         return author.orElse(null);
+    }
 
+    @QueryMapping
+    public List<Author> getAuthors(){
+        return authorRepository.findAll();
     }
 
     @SchemaMapping
@@ -37,8 +43,15 @@ public class GraphQLController {
         return bookRepository.findByAuthorId(author.getAuthorId());
     }
 
-    @QueryMapping
-    public List<Author> getAuthors(){
-        return authorRepository.findAll();
+    @SchemaMapping
+    public Author author(Book book){
+        Optional<Author> author = authorRepository.findById(book.getAuthorId());
+        return author.orElse(null);
+    }
+
+    @SchemaMapping
+    public Publisher publisher(Book book){
+        Optional<Publisher> publisher = publisherRepository.findById(book.getPublisherId());
+        return publisher.orElse(null);
     }
 }
