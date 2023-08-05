@@ -28,7 +28,7 @@ public class AuthorServiceLayer {
     private AuthorViewModel buildAuthorViewModel(Author author) {
         AuthorViewModel authorViewModel = new AuthorViewModel();
         List<Book> books = this.bookRepository.findByAuthorId(author.getAuthorId());
-        authorViewModel.setAuthorId(author.getAuthorId());
+        authorViewModel.setId(author.getAuthorId());
         authorViewModel.setFirstName(author.getFirstName());
         authorViewModel.setLastName(author.getLastName());
         authorViewModel.setEmail(author.getEmail());

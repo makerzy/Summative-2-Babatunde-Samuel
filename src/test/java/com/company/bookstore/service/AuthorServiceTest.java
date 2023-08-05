@@ -107,7 +107,7 @@ public class AuthorServiceTest {
 
         bookList.add(book);
         AuthorViewModel authorView = new AuthorViewModel();
-        authorView.setAuthorId(1);
+        authorView.setId(1);
         authorView.setFirstName("first_name");
         authorView.setLastName("last_name");
         authorView.setEmail("email@email.com");
