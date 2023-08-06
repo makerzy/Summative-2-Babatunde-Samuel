@@ -44,7 +44,7 @@ public class PublisherController {
     public void updatePublisher(@RequestBody Publisher publisher){repo.save(publisher);}
 
     //delete
-    @DeleteMapping("/publishers/{id}")
+    @DeleteMapping(value = "/publishers/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deletePublisher(@PathVariable Integer id){repo.deleteById(id);}
+    public void deletePublisher(@PathVariable int id){repo.deleteById(id);}
 }

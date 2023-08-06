@@ -2,7 +2,7 @@
 #so, I made all field nullable except the ID
 
 type Author{
-    id: String!
+    authorId: String
     firstName: String
     lastName: String
     email:String
@@ -14,12 +14,17 @@ type Author{
 }
 
 type Book{
-    id: String!
-
+    bookId: String
+    author: Author
+    isbn: String
+    publishDate: String
+    title: String
+    publisher: Publisher
+    price: String
 }
 
 type Publisher{
-    id: String!
+    publisherId: String
     firstName: String
     lastName: String
     email:String
@@ -28,13 +33,12 @@ type Publisher{
     city:String
     state:String
     books: [Book!]
-
 }
 
 type Query{
-    authors:[Author!]!
-    books: [Book!]!
-    publishers: [Publisher!]!
+    getAuthors:[Author!]!
+    getBooks: [Book!]!
+    getPublishers: [Publisher!]!
     findBookById(id: String!):Book
     findAuthorById(id: String!): Author
     findPublisherById(id: String!): Publisher
