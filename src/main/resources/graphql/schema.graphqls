@@ -38,8 +38,8 @@ type Query{
     getAuthors:[Author!]!
     getBooks: [Book!]!
     getPublishers: [Publisher!]!
-    findBookById(id: String!):Book
-    findAuthorById(id: String!): Author
-    findPublisherById(id: String!): Publisher
+    findBookById(id: Int!):Book
+    findAuthorById(id: Int!): Author
+    findPublisherById(id: Int!): Publisher
 }
 

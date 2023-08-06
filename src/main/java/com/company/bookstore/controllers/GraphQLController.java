@@ -6,7 +6,6 @@ import com.company.bookstore.models.Publisher;
 import com.company.bookstore.repository.AuthorRepository;
 import com.company.bookstore.repository.BookRepository;
 import com.company.bookstore.repository.PublisherRepository;
-import com.company.bookstore.service.AuthorServiceLayer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
@@ -18,9 +17,6 @@ import java.util.Optional;
 
 @Controller
 public class GraphQLController {
-    @Autowired
-    AuthorServiceLayer authorServiceLayer;
-
     @Autowired
     BookRepository bookRepository;
     @Autowired
