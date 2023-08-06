@@ -34,7 +34,7 @@ public class PublisherController {
     }
 
     //read all - GET all
-    @GetMapping("/publishers")
+    @GetMapping("/publishers/{id}")
     @ResponseStatus(HttpStatus.OK)
     public List<Publisher> getPublishers(){return repo.findAll();}
 

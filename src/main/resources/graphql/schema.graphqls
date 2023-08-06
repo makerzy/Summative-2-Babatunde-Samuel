@@ -2,7 +2,7 @@
 #so, I made all field nullable except the ID
 
 type Author{
-    authorId: String
+    authorId: Int
     firstName: String
     lastName: String
     email:String
@@ -14,7 +14,7 @@ type Author{
 }
 
 type Book{
-    bookId: String
+    bookId: Int
     author: Author
     isbn: String
     publishDate: String
@@ -24,9 +24,8 @@ type Book{
 }
 
 type Publisher{
-    publisherId: String
-    firstName: String
-    lastName: String
+    publisherId: Int
+    name: String
     email:String
     phone:String
     street: String

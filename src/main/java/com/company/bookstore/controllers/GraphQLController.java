@@ -66,6 +66,5 @@ public class GraphQLController {
         return publisher.orElse(null);
     }
 
-    //return books based on publisher
-    //
+
 }
