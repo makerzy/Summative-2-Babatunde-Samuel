@@ -43,6 +43,9 @@ public class AuthorController {
         Optional<Author> author1 = authorRepository.findById(id);
         if (author1.isPresent()) // only update if there is an existing row with the author Id
             authorRepository.save(author);
+//        else{
+//            throw new RuntimeException("No existing author with id "+ id);
+//        }
     }
 
     @DeleteMapping(value = "/authors/{id}")

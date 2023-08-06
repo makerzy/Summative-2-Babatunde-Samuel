@@ -4,7 +4,6 @@ import com.company.bookstore.models.Publisher;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
@@ -45,7 +44,7 @@ public class PublisherRepositoryTests {
         publisherRepository.save(publisher1);
 
         //Act...
-        Optional<Publisher> publisher2 = publisherRepository.findById(publisher1.getId());
+        Optional<Publisher> publisher2 = publisherRepository.findById(publisher1.getPublisherId());
 
         //Assert...
         assertEquals(publisher2.get(), publisher1);
@@ -59,7 +58,7 @@ public class PublisherRepositoryTests {
         publisherRepository.save(publisher);
 
         //Act...
-        Optional<Publisher> foundPublisher = publisherRepository.findById(publisher.getId());
+        Optional<Publisher> foundPublisher = publisherRepository.findById(publisher.getPublisherId());
 
         //Assert...
         assertEquals(foundPublisher.get(), publisher);
@@ -88,7 +87,7 @@ public class PublisherRepositoryTests {
         publisherRepository.save(publisher);
 
         //Act...
-        Optional<Publisher> publisher1 = publisherRepository.findById(publisher.getId());
+        Optional<Publisher> publisher1 = publisherRepository.findById(publisher.getPublisherId());
 
         //Assert...
         assertEquals(publisher1.get(), publisher);
@@ -102,8 +101,8 @@ public class PublisherRepositoryTests {
         publisherRepository.save(publisher);
 
         //Act...
-        publisherRepository.deleteById(publisher.getId());
-        Optional<Publisher> publisher1 = publisherRepository.findById(publisher.getId());
+        publisherRepository.deleteById(publisher.getPublisherId());
+        Optional<Publisher> publisher1 = publisherRepository.findById(publisher.getPublisherId());
 
         //Assert...
         assertFalse(publisher1.isPresent());

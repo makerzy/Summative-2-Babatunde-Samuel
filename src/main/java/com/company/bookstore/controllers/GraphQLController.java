@@ -34,13 +34,32 @@ public class GraphQLController {
     }
 
     @QueryMapping
+    public Publisher findPublisherById(@Argument int id){
+        Optional<Publisher> publisher = publisherRepository.findById(id);
+        return publisher.orElse(null);
+    }
+
+    @QueryMapping
     public List<Author> getAuthors(){
         return authorRepository.findAll();
+    }
+
+    @QueryMapping
+    public List<Publisher> getPublishers(){return publisherRepository.findAll();}
+
+    @QueryMapping
+    public List<Book> getBooks(){
+        return bookRepository.findAll();
     }
 
     @SchemaMapping
     public List<Book> books(Author author) {
         return bookRepository.findByAuthorId(author.getAuthorId());
+    }
+
+    @SchemaMapping
+    public List<Book> books(Publisher publisher){
+        return bookRepository.findByPublisherId(publisher.getPublisherId());
     }
 
     @SchemaMapping
@@ -54,4 +73,6 @@ public class GraphQLController {
         Optional<Publisher> publisher = publisherRepository.findById(book.getPublisherId());
         return publisher.orElse(null);
     }
+
+
 }

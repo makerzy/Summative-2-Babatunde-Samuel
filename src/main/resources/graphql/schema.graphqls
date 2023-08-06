@@ -2,37 +2,36 @@
 #so, I made all field nullable except the ID
 
 type Author{
-    authorId: Int
-    firstName: String
-    lastName: String
-    email:String
-    phone:String
+    authorId: Int!
+    firstName: String!
+    lastName: String!
+    email:String!
+    phone:String!
     street: String
     city:String
     state:String
-    books: [Book!]
+    books: [Book!]!
 }
 
 type Book{
-    bookId: Int
+    bookId: Int!
     author: Author
-    isbn: String
-    publishDate: String
-    title: String
+    isbn: String!
+    publishDate: String!
+    title: String!
     publisher: Publisher
-    price: String
+    price: String!
 }
 
 type Publisher{
-    publisherId: Int
-    firstName: String
-    lastName: String
-    email:String
-    phone:String
+    publisherId: Int!
+    name: String!
+    email:String!
+    phone:String!
     street: String
     city:String
     state:String
-    books: [Book!]
+    books: [Book!]!
 }
 
 type Query{
