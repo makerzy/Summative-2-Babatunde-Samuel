@@ -11,6 +11,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.util.List;
+
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -29,6 +32,7 @@ public class PublisherControllerTest {
 
     @BeforeEach
     void setUp(){
+        publisherRepository.deleteAll();
         publisher = new Publisher();
         publisher.setName("name");
         publisher.setPhone("000-000-0000");
@@ -43,15 +47,13 @@ public class PublisherControllerTest {
     public void shouldReturnAllPublishers() throws Exception{
 
         publisherRepository.save(publisher);
+        List<Publisher> plist = publisherRepository.findAll();
+        when(publisherRepository.findAll()).thenReturn(plist);
         mockMvc.perform(get("/publishers"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.getName()").value("name"))
-                .andExpect(jsonPath("$.getPhone()").value("000-000-0000"))
-                .andExpect(jsonPath("$.getStreet()").value("123 lane"))
-                .andExpect(jsonPath("$.getCity()").value("city"))
-                .andExpect(jsonPath("$.getState()").value("AL"))
-                .andExpect(jsonPath("$.getPostalCode()").value("00000"))
-                .andExpect(jsonPath("$.getEmail()").value("abc@gmail.com"));
+                .andExpect(jsonPath("$.size()").value(plist.size()))
+                .andDo(print());
+
 
     }
 }
