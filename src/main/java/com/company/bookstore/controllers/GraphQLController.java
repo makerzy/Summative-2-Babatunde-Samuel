@@ -28,8 +28,8 @@ public class GraphQLController {
     @Autowired
     PublisherRepository publisherRepository;
     @QueryMapping
-    public Author findAuthorById(@Argument String id){
-        Optional<Author> author = authorRepository.findById(Integer.parseInt(id));
+    public Author findAuthorById(@Argument int id){
+        Optional<Author> author = authorRepository.findById(id);
         return author.orElse(null);
     }
 

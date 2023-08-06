@@ -8,7 +8,7 @@ import java.util.Objects;
 
 public class AuthorViewModel {
 
-    private int id;
+    private int authorId;
     private String firstName;
     private String lastName;
     private String email;
@@ -19,12 +19,12 @@ public class AuthorViewModel {
     private String postalCode;
     List<Book> books = new ArrayList<>();
 
-    public int getId() {
-        return id;
+    public int getAuthorId() {
+        return authorId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setAuthorId(int authorId) {
+        this.authorId = authorId;
     }
 
     public String getFirstName() {
@@ -105,18 +105,18 @@ public class AuthorViewModel {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         AuthorViewModel that = (AuthorViewModel) o;
-        return id == that.id && Objects.equals(firstName, that.firstName) && Objects.equals(lastName, that.lastName) && Objects.equals(email, that.email) && Objects.equals(phone, that.phone) && Objects.equals(street, that.street) && Objects.equals(city, that.city) && Objects.equals(state, that.state) && Objects.equals(postalCode, that.postalCode) && Objects.equals(books, that.books);
+        return authorId == that.authorId && Objects.equals(firstName, that.firstName) && Objects.equals(lastName, that.lastName) && Objects.equals(email, that.email) && Objects.equals(phone, that.phone) && Objects.equals(street, that.street) && Objects.equals(city, that.city) && Objects.equals(state, that.state) && Objects.equals(postalCode, that.postalCode) && Objects.equals(books, that.books);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstName, lastName, email, phone, street, city, state, postalCode, books);
+        return Objects.hash(authorId, firstName, lastName, email, phone, street, city, state, postalCode, books);
     }
 
     @Override
     public String toString() {
         return "AuthorViewModel{" +
-                "id=" + id +
+                "authorId=" + authorId +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +

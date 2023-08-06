@@ -32,7 +32,7 @@ public class AuthorServiceLayer  {
         System.out.println("Size: "+books.size());
         System.out.println("Books: ");
         books.forEach(book -> System.out.println(book.getTitle()));
-        authorViewModel.setId(author.getAuthorId());
+        authorViewModel.setAuthorId(author.getAuthorId());
         authorViewModel.setFirstName(author.getFirstName());
         authorViewModel.setLastName(author.getLastName());
         authorViewModel.setEmail(author.getEmail());
