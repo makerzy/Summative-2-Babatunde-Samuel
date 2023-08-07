@@ -128,8 +128,3 @@ public class Author {
     }
 }
 
-
-//    INSERT INTO author
-//        (`author_id`, `first_name`, `last_name`, `street`, `city`, `state`, `postal_code`, `phone`, `email`)
-//    VALUES
-//            (1, "Stephen", "King", "Hollywood", "Los Angeles", "CA", "11100", "111-222-3333", "sking@gmail.com");

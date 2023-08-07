@@ -38,8 +38,14 @@ public class PublisherRepositoryTests {
     public void shouldAddPublisher(){
 
         //Arrange...
-        Publisher publisher1 = publisher;
-
+        Publisher publisher1 = new Publisher();
+        publisher1.setName("Publisher Name");
+        publisher1.setStreet("Hollywood");
+        publisher1.setCity("LA");
+        publisher1.setState("CA");
+        publisher1.setPostalCode("040404");
+        publisher1.setPhone("111-111-1111");
+        publisher1.setEmail("publisher.name@gmail.com");
 
         publisherRepository.save(publisher1);
 

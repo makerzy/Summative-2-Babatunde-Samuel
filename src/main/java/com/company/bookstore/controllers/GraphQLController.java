@@ -36,6 +36,12 @@ public class GraphQLController {
     }
 
     @QueryMapping
+    public Book findBookById(@Argument int id){
+        Optional<Book> book = bookRepository.findById(id);
+        return book.orElse(null);
+    }
+
+    @QueryMapping
     public List<Author> getAuthors(){
         return authorRepository.findAll();
     }

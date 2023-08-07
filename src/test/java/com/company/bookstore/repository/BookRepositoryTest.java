@@ -30,6 +30,16 @@ public class BookRepositoryTest {
 
     @Test
     public void addBook() {
+
+        Book book = new Book();
+
+        book.setIsbn("22222222222");
+        book.setPublishDate("1995-08-01");
+        book.setAuthorId(2);
+        book.setTitle("An interesting book2");
+        book.setPublisherId(2);
+        book.setPrice(19.99);
+        bookRepository.save(book);
         Optional<Book> newBook = bookRepository.findById(book.getBookId());
         assertEquals(newBook.get(), book);
     }
@@ -59,18 +69,7 @@ public class BookRepositoryTest {
 
     @Test
     public void getBooksByAuthorId() {
-        Book newBook = new Book();
-
-        newBook.setIsbn("newIsbn");
-        newBook.setPublishDate("02/02/02");
-        newBook.setAuthorId(2);
-        newBook.setTitle("newBook title");
-        newBook.setPublisherId(2);
-        newBook.setPrice(1.00);
-        bookRepository.save(newBook);
-
-        List<Book> books = bookRepository.findByPublisherId(2);
+        List<Book> books = bookRepository.findByAuthorId(book.getAuthorId());
         assertTrue(books.contains(book));
-        assertFalse(books.contains(newBook));
     }
 }

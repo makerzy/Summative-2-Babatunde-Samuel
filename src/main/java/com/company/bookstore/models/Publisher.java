@@ -27,6 +27,9 @@ public class Publisher implements Serializable {
     private String phone;
     private String email;
 
+
+    public Publisher(){}
+
     public int getPublisherId() {
         return publisherId;
     }
@@ -92,19 +95,6 @@ public class Publisher implements Serializable {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Publisher publisher = (Publisher) o;
-        return Objects.equals(getPublisherId(), publisher.getPublisherId()) && Objects.equals(getName(), publisher.getName()) && Objects.equals(getStreet(), publisher.getStreet()) && Objects.equals(getCity(), publisher.getCity()) && Objects.equals(getState(), publisher.getState()) && Objects.equals(getPostalCode(), publisher.getPostalCode()) && Objects.equals(getPhone(), publisher.getPhone()) && Objects.equals(getEmail(), publisher.getEmail());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getPublisherId(), getName(), getStreet(), getCity(), getState(), getPostalCode(), getPhone(), getEmail());
-    }
-
-    @Override
     public String toString() {
         return "Publisher{" +
                 "id=" + publisherId +
@@ -117,4 +107,19 @@ public class Publisher implements Serializable {
                 ", email='" + email + '\'' +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Publisher publisher = (Publisher) o;
+        return Objects.equals(getPublisherId(), publisher.getPublisherId()) && Objects.equals(getName(), publisher.getName()) && Objects.equals(getStreet(), publisher.getStreet()) && Objects.equals(getCity(), publisher.getCity()) && Objects.equals(getState(), publisher.getState()) && Objects.equals(getPostalCode(), publisher.getPostalCode()) && Objects.equals(getPhone(), publisher.getPhone()) && Objects.equals(getEmail(), publisher.getEmail());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getPublisherId(), getName(), getStreet(), getCity(), getState(), getPostalCode(), getPhone(), getEmail());
+    }
+
+
 }
