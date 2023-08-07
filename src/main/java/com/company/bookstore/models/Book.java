@@ -16,25 +16,12 @@ public class Book {
     private int bookId;
     private String isbn;
     private String publishDate;
-    @ManyToOne
-    @JoinColumn(name = "author_id")
-    private Author author;
+    private int authorId;
     private String title;
-    @ManyToOne
-    @JoinColumn(name = "publisher_id")
-    private Publisher publisher;
+    private int publisherId;
     private double price;
 
     public Book(){}
-
-    public Book(String isbn, String publishDate, Author author, String title, Publisher publisher, double price) {
-        this.isbn = isbn;
-        this.publishDate = publishDate;
-        this.author = author;
-        this.title = title;
-        this.publisher = publisher;
-        this.price = price;
-    }
 
     public int getBookId() {
         return bookId;
@@ -60,12 +47,12 @@ public class Book {
         this.publishDate = publishDate;
     }
 
-    public Author getAuthor() {
-        return author;
+    public int getAuthorId() {
+        return authorId;
     }
 
-    public void setAuthor(Author author) {
-        this.author = author;
+    public void setAuthorId(int authorId) {
+        this.authorId = authorId;
     }
 
     public String getTitle() {
@@ -76,12 +63,12 @@ public class Book {
         this.title = title;
     }
 
-    public Publisher getPublisher() {
-        return publisher;
+    public int getPublisherId() {
+        return publisherId;
     }
 
-    public void setPublisher(Publisher publisher) {
-        this.publisher = publisher;
+    public void setPublisherId(int publisherId) {
+        this.publisherId = publisherId;
     }
 
     public double getPrice() {
@@ -93,15 +80,28 @@ public class Book {
     }
 
     @Override
+    public String toString() {
+        return "Book{" +
+                "bookId=" + bookId +
+                ", isbn='" + isbn + '\'' +
+                ", publishDate='" + publishDate + '\'' +
+                ", authorId=" + authorId +
+                ", title='" + title + '\'' +
+                ", publisherId=" + publisherId +
+                ", price=" + price +
+                '}';
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Book book = (Book) o;
-        return bookId == book.bookId && Double.compare(book.price, price) == 0 && Objects.equals(isbn, book.isbn) && Objects.equals(publishDate, book.publishDate) && Objects.equals(author, book.author) && Objects.equals(title, book.title) && Objects.equals(publisher, book.publisher);
+        return bookId == book.bookId && authorId == book.authorId && publisherId == book.publisherId && Double.compare(book.price, price) == 0 && Objects.equals(isbn, book.isbn) && Objects.equals(publishDate, book.publishDate) && Objects.equals(title, book.title);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(bookId, isbn, publishDate, author, title, publisher, price);
+        return Objects.hash(bookId, isbn, publishDate, authorId, title, publisherId, price);
     }
 }

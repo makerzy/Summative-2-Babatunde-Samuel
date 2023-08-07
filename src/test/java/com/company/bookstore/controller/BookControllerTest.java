@@ -82,7 +82,7 @@ public class BookControllerTest {
         when(bookRepository.save(any(Book.class))).thenReturn(book);
 
         mockMvc.perform(MockMvcRequestBuilders
-                        .put("/books/book")
+                        .put("/books/{bookId}", book.getBookId())
                         .content(mapper.writeValueAsString(book))
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNoContent());
@@ -97,7 +97,7 @@ public class BookControllerTest {
 
     @Test
     public void getBooksByAuthorIdTest() throws Exception {
-        when(bookRepository.getBooksByAuthorAuthorId(1)).thenReturn(Arrays.asList(book));
+        when(bookRepository.findByAuthorId(1)).thenReturn(Arrays.asList(book));
 
         mockMvc.perform(MockMvcRequestBuilders
                         .get("/books/authors/{authorId}", 1))

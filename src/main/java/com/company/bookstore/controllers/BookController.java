@@ -25,11 +25,7 @@ public class BookController {
     @GetMapping("/books/{bookId}")
     public Book getBookById(@PathVariable int bookId) {
         Optional<Book> returnVal = bookRepository.findById(bookId);
-        if(returnVal.isPresent()){
-            return returnVal.get();
-        } else {
-            return null;
-        }
+        return returnVal.orElse(null);
     }
 
     /** get all books*/
@@ -39,10 +35,12 @@ public class BookController {
     }
 
     /** update an existing book*/
-    @PutMapping("/books/book")
+    @PutMapping("/books/{bookId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void updateBook(@RequestBody Book book){
-        bookRepository.save(book);
+    public void updateBook(@RequestBody Book newBook, @PathVariable int bookId){
+        Optional<Book> book1 = bookRepository.findById(bookId);
+        if (book1.isPresent())
+            bookRepository.save(newBook);
     }
 
     /** delete an existing book */
@@ -54,8 +52,8 @@ public class BookController {
 
     /** get a book by author id */
     @GetMapping("/books/authors/{authorId}")
-    public List<Book> getBooksByAuthorId(@PathVariable int authorId) {
-        return bookRepository.getBooksByAuthorAuthorId(authorId);
+    public List<Book> findBooksByAuthorId(@PathVariable int authorId) {
+        return bookRepository.findByAuthorId(authorId);
     }
 
 }

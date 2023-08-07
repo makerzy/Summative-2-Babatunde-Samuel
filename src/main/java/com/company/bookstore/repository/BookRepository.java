@@ -9,6 +9,6 @@ import java.util.List;
 
 @Repository
 public interface BookRepository extends JpaRepository<Book, Integer> {
-    List<Book> getBooksByAuthorAuthorId(int authorId);
-
+    List<Book> findByPublisherId(int publisherId);
+    List<Book> findByAuthorId(int authorId);
 }

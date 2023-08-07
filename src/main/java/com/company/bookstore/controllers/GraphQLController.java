@@ -50,7 +50,7 @@ public class GraphQLController {
 
     @SchemaMapping
     public List<Book> books(Author author) {
-        return bookRepository.findByAuthorId(author.getAuthorId());
+        return bookRepository.findByPublisherId(author.getAuthorId());
     }
 
     @SchemaMapping
