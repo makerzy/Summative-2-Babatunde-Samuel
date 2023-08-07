@@ -1,112 +1,45 @@
-type Book {
-    bookId: ID!
-    isbn: String!
-    publishDate: String!
-    author: Author
-    title: String!
-    publisher: Publisher
-    price: Float!
-}
+# The requirements doesn't detail which fields are nullable,
+#so, I made all field nullable except the ID
 
-type Author {
-    authorId: ID!
+type Author{
+    authorId: Int!
     firstName: String!
     lastName: String!
-    street: String!
-    city: String!
-    state: String!
-    postalCode: String!
-    phone: String!
-    email: String!
-    books: [Book]
+    email:String!
+    phone:String!
+    street: String
+    city:String
+    state:String
+    books: [Book!]!
 }
 
-type Publisher {
-    publisherId: ID!
+type Book{
+    bookId: Int!
+    author: Author
+    isbn: String!
+    publishDate: String!
+    title: String!
+    publisher: Publisher
+    price: String!
+}
+
+type Publisher{
+    publisherId: Int!
     name: String!
-    street: String!
-    city: String!
-    state: String!
-    postalCode: String!
-    phone: String!
-    email: String!
-    books: [Book]
+    email:String!
+    phone:String!
+    street: String
+    city:String
+    state:String
+    books: [Book!]!
 }
 
 type Query{
-    getBookById(bookId: ID!): Book
-    getAllBooks : [Book]
-    getBooksByAuthorId(authorId: ID!): [Book]
-
-    getAuthorById(authorId: ID!): Author
-    getAllAuthors: [Author]
-
-    getPublisherById(publisherId: ID!): Publisher
-    getAllPublishers: [Publisher]
-}
-
-type Mutation {
-     addBook(
-        isbn: String!
-        publishDate: String!
-        authorId: ID!
-        title: String!
-        publisherId: ID!
-        price: Float!
-     ): Book
-     updateBook(
-        bookId: ID!
-        isbn: String
-        publishDate: String
-        authorId: ID
-        title: String
-        publisherId: ID
-        price: Float
-     ): Book
-     deleteBook(bookId: ID!): Boolean
-
-     addAuthor(
-        firstName: String!
-        lastName: String!
-        street: String!
-        city: String!
-        state: String!
-        postalCode: String!
-        phone: String!
-        email: String!
-     ): Author
-     updateAuthor(
-        authorId: ID!
-        firstName: String
-        lastName: String
-        street: String
-        city: String
-        state: String
-        postalCode: String
-        phone: String
-        email: String
-     ): Author
-     deleteAuthor(authorId: ID!): Boolean
-
-     addPublisher(
-         name: String!
-         street: String!
-         city: String!
-         state: String!
-         postalCode: String!
-         phone: String!
-         email: String!
-     ): Publisher
-     updatePublisher(
-         publisherId: ID!
-         name: String
-         street: String
-         city: String
-         state: String
-         postalCode: String
-         phone: String
-         email: String
-     ): Publisher
-     deletePublisher(publisherId: ID!): Boolean
+    getAuthors:[Author!]!
+    getBooks: [Book!]!
+    getPublishers: [Publisher!]!
+    findBookById(id: Int!):Book
+    findAuthorById(id: Int!): Author
+    findPublisherById(id: Int!): Publisher
 }
 
