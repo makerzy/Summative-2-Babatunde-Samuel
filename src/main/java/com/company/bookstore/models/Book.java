@@ -4,25 +4,37 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Objects;
 
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Table(name = "book")
 public class Book {
-
     @Id
     @Column(name = "book_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int bookId;
-
-    private int authorId;
     private String isbn;
-    private Date publishDate;
+    private String publishDate;
+    @ManyToOne
+    @JoinColumn(name = "author_id")
+    private Author author;
     private String title;
-    private int publisherId;
+    @ManyToOne
+    @JoinColumn(name = "publisher_id")
+    private Publisher publisher;
     private double price;
 
     public Book(){}
+
+    public Book(String isbn, String publishDate, Author author, String title, Publisher publisher, double price) {
+        this.isbn = isbn;
+        this.publishDate = publishDate;
+        this.author = author;
+        this.title = title;
+        this.publisher = publisher;
+        this.price = price;
+    }
 
     public int getBookId() {
         return bookId;
@@ -30,14 +42,6 @@ public class Book {
 
     public void setBookId(int bookId) {
         this.bookId = bookId;
-    }
-
-    public int getAuthorId() {
-        return authorId;
-    }
-
-    public void setAuthorId(int authorId) {
-        this.authorId = authorId;
     }
 
     public String getIsbn() {
@@ -48,12 +52,20 @@ public class Book {
         this.isbn = isbn;
     }
 
-    public Date getPublishDate() {
+    public String getPublishDate() {
         return publishDate;
     }
 
-    public void setPublishDate(Date publishDate) {
+    public void setPublishDate(String publishDate) {
         this.publishDate = publishDate;
+    }
+
+    public Author getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(Author author) {
+        this.author = author;
     }
 
     public String getTitle() {
@@ -64,12 +76,12 @@ public class Book {
         this.title = title;
     }
 
-    public int getPublisherId() {
-        return publisherId;
+    public Publisher getPublisher() {
+        return publisher;
     }
 
-    public void setPublisherId(int publisherId) {
-        this.publisherId = publisherId;
+    public void setPublisher(Publisher publisher) {
+        this.publisher = publisher;
     }
 
     public double getPrice() {
@@ -78,5 +90,18 @@ public class Book {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Book book = (Book) o;
+        return bookId == book.bookId && Double.compare(book.price, price) == 0 && Objects.equals(isbn, book.isbn) && Objects.equals(publishDate, book.publishDate) && Objects.equals(author, book.author) && Objects.equals(title, book.title) && Objects.equals(publisher, book.publisher);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(bookId, isbn, publishDate, author, title, publisher, price);
     }
 }

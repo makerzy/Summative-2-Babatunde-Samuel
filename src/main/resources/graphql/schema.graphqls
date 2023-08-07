@@ -1,46 +1,112 @@
-# The requirements doesn't detail which fields are nullable,
-#so, I made all field nullable except the ID
-
-type Author{
-    authorId: String
-    firstName: String
-    lastName: String
-    email:String
-    phone:String
-    street: String
-    city:String
-    state:String
-    books: [Book!]
+type Book {
+    bookId: ID!
+    isbn: String!
+    publishDate: String!
+    author: Author
+    title: String!
+    publisher: Publisher
+    price: Float!
 }
 
-type Book{
-    bookId: String
-    authorId: String
-    isbn: String
-    publishDate: String
-    title: String
-    publisherId: String
-    price: String
+type Author {
+    authorId: ID!
+    firstName: String!
+    lastName: String!
+    street: String!
+    city: String!
+    state: String!
+    postalCode: String!
+    phone: String!
+    email: String!
+    books: [Book]
 }
 
-type Publisher{
-    publisherId: String
-    firstName: String
-    lastName: String
-    email:String
-    phone:String
-    street: String
-    city:String
-    state:String
-    books: [Book!]
+type Publisher {
+    publisherId: ID!
+    name: String!
+    street: String!
+    city: String!
+    state: String!
+    postalCode: String!
+    phone: String!
+    email: String!
+    books: [Book]
 }
 
 type Query{
-    getAuthors:[Author!]!
-    getBooks: [Book!]!
-    getPublishers: [Publisher!]!
-    findBookById(id: String!):Book
-    findAuthorById(id: String!): Author
-    findPublisherById(id: String!): Publisher
+    getBookById(bookId: ID!): Book
+    getAllBooks : [Book]
+    getBooksByAuthorId(authorId: ID!): [Book]
+
+    getAuthorById(authorId: ID!): Author
+    getAllAuthors: [Author]
+
+    getPublisherById(publisherId: ID!): Publisher
+    getAllPublishers: [Publisher]
+}
+
+type Mutation {
+     addBook(
+        isbn: String!
+        publishDate: String!
+        authorId: ID!
+        title: String!
+        publisherId: ID!
+        price: Float!
+     ): Book
+     updateBook(
+        bookId: ID!
+        isbn: String
+        publishDate: String
+        authorId: ID
+        title: String
+        publisherId: ID
+        price: Float
+     ): Book
+     deleteBook(bookId: ID!): Boolean
+
+     addAuthor(
+        firstName: String!
+        lastName: String!
+        street: String!
+        city: String!
+        state: String!
+        postalCode: String!
+        phone: String!
+        email: String!
+     ): Author
+     updateAuthor(
+        authorId: ID!
+        firstName: String
+        lastName: String
+        street: String
+        city: String
+        state: String
+        postalCode: String
+        phone: String
+        email: String
+     ): Author
+     deleteAuthor(authorId: ID!): Boolean
+
+     addPublisher(
+         name: String!
+         street: String!
+         city: String!
+         state: String!
+         postalCode: String!
+         phone: String!
+         email: String!
+     ): Publisher
+     updatePublisher(
+         publisherId: ID!
+         name: String
+         street: String
+         city: String
+         state: String
+         postalCode: String
+         phone: String
+         email: String
+     ): Publisher
+     deletePublisher(publisherId: ID!): Boolean
 }
 

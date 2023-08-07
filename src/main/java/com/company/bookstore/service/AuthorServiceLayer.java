@@ -27,7 +27,7 @@ public class AuthorServiceLayer  {
 
     private AuthorViewModel buildAuthorViewModel(Author author) {
         AuthorViewModel authorViewModel = new AuthorViewModel();
-        List<Book> books = this.bookRepository.findByAuthorId(author.getAuthorId());
+        List<Book> books = this.bookRepository.getBooksByAuthorAuthorId(author.getAuthorId());
         System.out.println("Author: "+author.getAuthorId());
         System.out.println("Size: "+books.size());
         System.out.println("Books: ");

@@ -13,7 +13,6 @@ import java.util.Objects;
 public class Author {
 
     @Id
-    @Column(name = "author_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int authorId;
     private String firstName;
