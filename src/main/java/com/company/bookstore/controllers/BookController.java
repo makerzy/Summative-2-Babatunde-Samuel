@@ -15,7 +15,7 @@ public class BookController {
     BookRepository bookRepository;
 
     /** add a new book */
-    @PostMapping("/book")
+    @PostMapping("/books")
     @ResponseStatus(HttpStatus.CREATED)
     public Book addBook (@RequestBody Book book){
         return bookRepository.save(book);
