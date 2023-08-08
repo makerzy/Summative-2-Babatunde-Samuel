@@ -10,6 +10,7 @@ type Author{
     street: String
     city:String
     state:String
+    postalCode: String
     books: [Book!]!
 }
 
@@ -31,6 +32,7 @@ type Publisher{
     street: String
     city:String
     state:String
+    postalCode: String
     books: [Book!]!
 }
 
