@@ -4,6 +4,7 @@ package com.company.bookstore.models;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Objects;
 
 
@@ -13,6 +14,7 @@ import java.util.Objects;
 public class Author {
 
     @Id
+    @Column(name = "author_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int authorId;
     private String firstName;
@@ -23,6 +25,10 @@ public class Author {
     private String city;
     private String state;
     private String postalCode;
+
+    @OneToMany
+    @JoinColumn(name = "book")
+    private Book books;
 
     public Author() {
     }

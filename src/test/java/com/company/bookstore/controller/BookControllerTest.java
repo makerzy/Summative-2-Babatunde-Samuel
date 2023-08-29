@@ -41,7 +41,7 @@ public class BookControllerTest {
         when(bookRepository.save(any(Book.class))).thenReturn(book);
 
         mockMvc.perform(MockMvcRequestBuilders
-                        .post("/book")
+                        .post("/books")
                         .content(mapper.writeValueAsString(book))
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isCreated())

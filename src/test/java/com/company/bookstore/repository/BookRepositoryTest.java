@@ -1,4 +1,5 @@
 package com.company.bookstore.repository;
+import com.company.bookstore.models.Author;
 import com.company.bookstore.models.Book;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -71,5 +72,12 @@ public class BookRepositoryTest {
     public void getBooksByAuthorId() {
         List<Book> books = bookRepository.findByAuthorId(book.getAuthorId());
         assertTrue(books.contains(book));
+    }
+
+    @Test
+    public void shouldGetAllBooks() {
+
+        List<Book> books = bookRepository.findAll();
+        assertEquals(books.size(), 1);
     }
 }

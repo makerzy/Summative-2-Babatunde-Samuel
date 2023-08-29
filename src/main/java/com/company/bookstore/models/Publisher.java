@@ -27,6 +27,9 @@ public class Publisher implements Serializable {
     private String phone;
     private String email;
 
+    @OneToMany
+    @JoinColumn(name = "book")
+    private Book books;
 
     public Publisher(){}
 
